@@ -1,0 +1,3 @@
+grid_point_id,latitude,longitude,grid_resolution,voivodeship,nuts_id
+ERA5_49.1_22.5,49.1,22.5,0.1° × 0.1°,Podkarpackie,PL82
+ERA5_49.1_22.6,49.1,22.6,0.1° × 0.1°,Podkarpackie,PL82

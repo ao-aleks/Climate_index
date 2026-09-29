@@ -1,0 +1,72 @@
+[
+  {
+    "region": "dolnoslaskie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  },
+  {
+    "region": "kujawsko_pomorskie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  },
+  {
+    "region": "lodzkie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  },
+  {
+    "region": "lubelskie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  },
+  {
+    "region": "lubuskie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  },
+  {
+    "region": "malopolskie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  },
+  {
+    "region": "opolskie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  },
+  {
+    "region": "podkarpackie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  },
+  {
+    "region": "podlaskie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  },
+  {
+    "region": "slaskie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  },
+  {
+    "region": "swietokrzyskie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  },
+  {
+    "region": "wielkopolskie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  },
+  {
+    "region": "mazowieckie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  },
+  {
+    "region": "pomorskie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  }
+]

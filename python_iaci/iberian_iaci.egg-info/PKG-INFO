@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: iberian-iaci
+Version: 0.1.0
+Summary: Python port of the rIACI Iberian Actuarial Climate Index package
+License-Expression: GPL-3.0-only
+Requires-Python: >=3.10
+Requires-Dist: numpy
+Requires-Dist: pandas
+Provides-Extra: netcdf
+Requires-Dist: xarray; extra == "netcdf"
+Requires-Dist: netCDF4; extra == "netcdf"
+Requires-Dist: dask; extra == "netcdf"
+Provides-Extra: download
+Requires-Dist: cdsapi; extra == "download"

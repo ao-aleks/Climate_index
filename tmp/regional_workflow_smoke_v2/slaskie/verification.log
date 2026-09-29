@@ -1,0 +1,33 @@
+Okres: 1961-01-01 – 2026-04-30 | Baza: (1961, 1991)
+Punkty: 2
+1961 — pobieranie danych godzinowych
+1961 — zapisano dane dzienne
+1962 — pobieranie danych godzinowych
+1962 — zapisano dane dzienne
+1963 — pobieranie danych godzinowych
+1963 — zapisano dane dzienne
+1964 — pobieranie danych godzinowych
+1964 — zapisano dane dzienne
+1965 — pobieranie danych godzinowych
+1965 — zapisano dane dzienne
+Komplet danych gotowy do obliczeń.
+1961 — gotowe dane dzienne
+1962 — gotowe dane dzienne
+1963 — gotowe dane dzienne
+1964 — gotowe dane dzienne
+1965 — gotowe dane dzienne
+CSV: 2/2
+Zapisano CSV: C:\Climate_index\tmp\regional_workflow_smoke_v2\slaskie\data\grid_csv
+status
+used    2
+Name: count, dtype: int64
+Brakujące dni regionalne: {'TMAX': 0, 'TMIN': 0, 'PRCP': 0, 'WP': 0}
+Miesiące: 60 | Poprawny indeks: 60
+Kompletne sezony: 19
+Obliczenia punktowe: 2 punktów; gotowe wyniki będą wczytane z pamięci podręcznej.
+Punkt 1/2: 49.4_19.0
+Punkt 2/2: 49.5_19.0
+Punkty: 2/2
+Zapisano sezonowe składniki dla punktów: 2
+Mapa: C:\Climate_index\tmp\regional_workflow_smoke_v2\slaskie\output\maps_presentation_style\ACI_land5_1961-MAM.png
+Mapa: C:\Climate_index\tmp\regional_workflow_smoke_v2\slaskie\output\slaskie_interactive_map.html

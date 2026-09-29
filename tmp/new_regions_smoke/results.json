@@ -1,0 +1,12 @@
+[
+  {
+    "region": "warminsko_mazurskie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  },
+  {
+    "region": "zachodniopomorskie",
+    "download": "offline hourly fixture + cache reuse",
+    "workflow": "daily CSV, regional + point indices, annual + seasonal maps, HTML passed"
+  }
+]

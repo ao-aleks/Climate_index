@@ -1,0 +1,132 @@
+STORES = [
+    ("https://arco.datastores.ecmwf.int/cadl-arco-geo-007/arco/reanalysis_era5_land/sfc-2m-temperature/geoChunked.zarr", ["t2m"]),
+    ("https://arco.datastores.ecmwf.int/cadl-arco-geo-009/arco/reanalysis_era5_land/sfc-pressure-precipitation/geoChunked.zarr", ["tp"]),
+    ("https://arco.datastores.ecmwf.int/cadl-arco-geo-008/arco/reanalysis_era5_land/sfc-wind/geoChunked.zarr", ["u10", "v10"]),
+]
+
+def year_limits(year):
+    return max(START, pd.Timestamp(year, 1, 1)), min(END, pd.Timestamp(year, 12, 31))
+
+def check_block(ds, year, kind):
+    first, last = year_limits(year)
+    expected = (pd.date_range(first, last + pd.Timedelta(days=1), freq="h")
+                if kind == "hourly" else pd.date_range(first, last, freq="D"))
+    variables = ["t2m", "tp", "u10", "v10"] if kind == "hourly" else CLIMATE_COLUMNS
+    if not set(variables).issubset(ds.data_vars):
+        raise ValueError(f"{year}: brak wymaganych zmiennych.")
+    if not pd.DatetimeIndex(ds.time.values).equals(expected):
+        raise ValueError(f"{year}: niezgodny lub niekompletny kalendarz.")
+    for coordinate in ["latitude", "longitude"]:
+        if ds[coordinate].dims != ("point",) or ds.sizes.get("point") != len(grid):
+            raise ValueError(f"{year}: niezgodna liczba lub układ punktów.")
+        if not np.allclose(ds[coordinate].values, grid[coordinate], rtol=0, atol=1e-5):
+            raise ValueError(f"{year}: niezgodne współrzędne.")
+    for variable in variables:
+        if set(ds[variable].dims) != {"time", "point"}:
+            raise ValueError(f"{year}: nieoczekiwane wymiary {variable}.")
+    if ds.attrs.get("grid_sha256") != GRID_HASH or ds.attrs.get("pipeline_version") != PIPELINE_VERSION:
+        raise ValueError(f"{year}: plik pochodzi z innej siatki lub wersji obliczeń.")
+
+
+def block_exists(path, year, kind):
+    if not path.exists():
+        return False
+    with xr.open_dataset(path) as ds:
+        check_block(ds, year, kind)
+    return True
+
+
+def stamp(ds):
+    ds.attrs.update(grid_sha256=GRID_HASH, pipeline_version=PIPELINE_VERSION,
+                    region=REGION, source="ECMWF ERA5-Land ARCO", time_zone="UTC")
+    return ds
+
+
+def atomic_netcdf(ds, path):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(".partial.nc")
+    ds.to_netcdf(temporary, engine="netcdf4")
+    temporary.replace(path)
+
+
+def daily_from_hourly(hourly, first, last):
+    temperature = hourly.t2m - 273.15
+    precipitation = hourly.tp * 1000
+    precipitation = precipitation.assign_coords(time=precipitation.time - np.timedelta64(1, "h"))
+    rain = precipitation.resample(time="1D").sum(skipna=False)
+    rain = rain.where(precipitation.resample(time="1D").count() == 24)
+    speed = np.sqrt(hourly.u10 ** 2 + hourly.v10 ** 2)
+    return xr.Dataset({
+        "TMAX": temperature.resample(time="1D").max(),
+        "TMIN": temperature.resample(time="1D").min(),
+        "PRCP": rain,
+        "WP": 0.5 * 1.23 * speed.resample(time="1D").mean() ** 3,
+    }).sel(time=slice(first, last))
+
+
+def prepare_daily_blocks(download=False):
+    opened = []
+    token = None
+    try:
+        for year in YEARS:
+            daily_path = DAILY_DIR / f"{year}_daily.nc"
+            raw_path = RAW_DIR / f"{year}_arco.nc"
+            if block_exists(daily_path, year, "daily"):
+                print(year, "— gotowe dane dzienne", flush=True)
+                continue
+            first, last = year_limits(year)
+            if not block_exists(raw_path, year, "hourly"):
+                if not download:
+                    continue
+                if not opened:
+                    token = os.environ.get("CDS_API_KEY") or getpass("Token CDS (ukryty): ")
+                    if not token.strip():
+                        raise ValueError("Nie podano tokenu CDS.")
+                    for url, variables in STORES:
+                        source = xr.open_zarr(url, consolidated=True, chunks={},
+                            storage_options={"headers": {"Authorization": f"Bearer {token}"}})
+                        opened.append((source, variables))
+                print(year, "— pobieranie danych godzinowych", flush=True)
+                groups = []
+                for source, variables in opened:
+                    selection = {"time": slice(first, last + pd.Timedelta(days=1))}
+                    for coord in ("latitude", "longitude"):
+                        low, high = grid[coord].min() - 0.05, grid[coord].max() + 0.05
+                        selection[coord] = slice(low, high) if source.indexes[coord].is_monotonic_increasing else slice(high, low)
+                    # Jeden odczyt prostokąta; wybór punktów odbywa się już w RAM.
+                    boxed = source[variables].sel(**selection).compute()
+                    groups.append(boxed.sel(
+                        latitude=xr.DataArray(grid.latitude.to_numpy(), dims="point"),
+                        longitude=xr.DataArray(grid.longitude.to_numpy(), dims="point"),
+                        method="nearest", tolerance=1e-5,
+                    ))
+                    del boxed
+                hourly = stamp(xr.merge(groups, join="exact"))
+                check_block(hourly, year, "hourly")
+                bad = {v: int((~np.isfinite(hourly[v].values)).sum())
+                       for v in ["t2m", "tp", "u10", "v10"]
+                       if not np.isfinite(hourly[v].values).all()}
+                if bad:
+                    raise ValueError(f"{year}: ARCO zwróciło braki {bad}. Nie zapisano roku; "
+                                     "ponów odczyt sekcji 2. Jeżeli braki się powtarzają, sprawdź źródło.")
+                atomic_netcdf(hourly, raw_path)
+            with xr.open_dataset(raw_path) as hourly:
+                check_block(hourly, year, "hourly")
+                daily = stamp(daily_from_hourly(hourly, first, last))
+                check_block(daily, year, "daily")
+                atomic_netcdf(daily, daily_path)
+            print(year, "— zapisano dane dzienne", flush=True)
+    finally:
+        for source, _ in opened:
+            source.close()
+        token = None
+
+prepare_daily_blocks(download=RUN_ARCO_DOWNLOAD)
+missing_years = [year for year in YEARS if not block_exists(DAILY_DIR / f"{year}_daily.nc", year, "daily")]
+DATA_READY = not missing_years
+if DATA_READY:
+    print("Komplet danych gotowy do obliczeń.")
+else:
+    print(f"BRAK DANYCH: {len(missing_years)} bloków rocznych. Nie obliczono jeszcze indeksu województwa Dolnośląskie.")
+    print("Brakujące lata:", missing_years)
+    print("Ustaw RUN_ARCO_DOWNLOAD=True i uruchom ponownie konfigurację oraz tę komórkę.")

@@ -1,0 +1,10 @@
+numpy
+pandas
+
+[download]
+cdsapi
+
+[netcdf]
+xarray
+netCDF4
+dask

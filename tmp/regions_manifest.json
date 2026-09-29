@@ -1,0 +1,114 @@
+[
+  {
+    "region": "dolnoslaskie",
+    "label": "Dolnośląskie",
+    "grid_points": 259,
+    "inside_boundary": 259,
+    "nuts": "PL51",
+    "notebook": "dolnoslaskie_aci_workflow.ipynb"
+  },
+  {
+    "region": "kujawsko_pomorskie",
+    "label": "Kujawsko-pomorskie",
+    "grid_points": 236,
+    "inside_boundary": 236,
+    "nuts": "PL61",
+    "notebook": "kujawsko_pomorskie_aci_workflow.ipynb"
+  },
+  {
+    "region": "lodzkie",
+    "label": "Łódzkie",
+    "grid_points": 238,
+    "inside_boundary": 238,
+    "nuts": "PL71",
+    "notebook": "lodzkie_aci_workflow.ipynb"
+  },
+  {
+    "region": "lubelskie",
+    "label": "Lubelskie",
+    "grid_points": 327,
+    "inside_boundary": 327,
+    "nuts": "PL81",
+    "notebook": "lubelskie_aci_workflow.ipynb"
+  },
+  {
+    "region": "lubuskie",
+    "label": "Lubuskie",
+    "grid_points": 177,
+    "inside_boundary": 177,
+    "nuts": "PL43",
+    "notebook": "lubuskie_aci_workflow.ipynb"
+  },
+  {
+    "region": "malopolskie",
+    "label": "Małopolskie",
+    "grid_points": 193,
+    "inside_boundary": 193,
+    "nuts": "PL21",
+    "notebook": "malopolskie_aci_workflow.ipynb"
+  },
+  {
+    "region": "opolskie",
+    "label": "Opolskie",
+    "grid_points": 116,
+    "inside_boundary": 116,
+    "nuts": "PL52",
+    "notebook": "opolskie_aci_workflow.ipynb"
+  },
+  {
+    "region": "podkarpackie",
+    "label": "Podkarpackie",
+    "grid_points": 221,
+    "inside_boundary": 221,
+    "nuts": "PL82",
+    "notebook": "podkarpackie_aci_workflow.ipynb"
+  },
+  {
+    "region": "podlaskie",
+    "label": "Podlaskie",
+    "grid_points": 272,
+    "inside_boundary": 272,
+    "nuts": "PL84",
+    "notebook": "podlaskie_aci_workflow.ipynb"
+  },
+  {
+    "region": "slaskie",
+    "label": "Śląskie",
+    "grid_points": 152,
+    "inside_boundary": 152,
+    "nuts": "PL22",
+    "notebook": "slaskie_aci_workflow.ipynb"
+  },
+  {
+    "region": "swietokrzyskie",
+    "label": "Świętokrzyskie",
+    "grid_points": 147,
+    "inside_boundary": 147,
+    "nuts": "PL72",
+    "notebook": "swietokrzyskie_aci_workflow.ipynb"
+  },
+  {
+    "region": "wielkopolskie",
+    "label": "Wielkopolskie",
+    "grid_points": 401,
+    "inside_boundary": 401,
+    "nuts": "PL41",
+    "notebook": "wielkopolskie_aci_workflow.ipynb"
+  },
+  {
+    "region": "warminsko_mazurskie",
+    "label": "Warmińsko-mazurskie",
+    "grid_points": 329,
+    "inside_boundary": 329,
+    "nuts": "PL62",
+    "notebook": "warminsko_mazurskie_aci_workflow.ipynb"
+  },
+  {
+    "region": "zachodniopomorskie",
+    "label": "Zachodniopomorskie",
+    "grid_points": 306,
+    "inside_boundary": 306,
+    "nuts": "PL42",
+    "notebook": "zachodniopomorskie_aci_workflow.ipynb"
+  }
+]

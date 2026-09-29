@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "iberian-iaci"
+version = "0.1.0"
+description = "Python port of the rIACI Iberian Actuarial Climate Index package"
+requires-python = ">=3.10"
+license = "GPL-3.0-only"
+dependencies = ["numpy", "pandas"]
+
+[project.optional-dependencies]
+netcdf = ["xarray", "netCDF4", "dask"]
+download = ["cdsapi"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["iaci*"]

@@ -1,0 +1,29 @@
+Okres: 1961-01-01 – 2026-04-30 | Baza: (1961, 1991)
+Punkty: 2
+Blok 1961–1970: pobrano i rozdzielono lokalnie
+1961 — zapisano dane dzienne
+1962 — zapisano dane dzienne
+1963 — zapisano dane dzienne
+1964 — zapisano dane dzienne
+1965 — zapisano dane dzienne
+Komplet danych gotowy do obliczeń.
+1961 — gotowe dane dzienne
+1962 — gotowe dane dzienne
+1963 — gotowe dane dzienne
+1964 — gotowe dane dzienne
+1965 — gotowe dane dzienne
+CSV: 2/2
+Zapisano CSV: C:\Climate_index\tmp\new_regions_smoke\zachodniopomorskie\data\grid_csv
+status
+used    2
+Name: count, dtype: int64
+Brakujące dni regionalne: {'TMAX': 0, 'TMIN': 0, 'PRCP': 0, 'WP': 0}
+Miesiące: 60 | Poprawny indeks: 60
+Kompletne sezony: 19
+Obliczenia punktowe: 2 punktów; gotowe wyniki będą wczytane z pamięci podręcznej.
+Punkt 1/2: 52.7_14.5
+Punkt 2/2: 52.7_14.6
+Punkty: 2/2
+Zapisano sezonowe składniki dla punktów: 2
+Mapa: C:\Climate_index\tmp\new_regions_smoke\zachodniopomorskie\output\maps_presentation_style\ACI_land5_1961-MAM.png
+Mapa: C:\Climate_index\tmp\new_regions_smoke\zachodniopomorskie\output\zachodniopomorskie_interactive_map.html

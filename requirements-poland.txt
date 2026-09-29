@@ -1,0 +1,14 @@
+numpy
+pandas
+cdsapi
+xarray
+netCDF4
+dask[array]
+zarr
+fsspec
+aiohttp
+geopandas>=1.0
+matplotlib
+plotly>=6.0
+pyogrio
+joblib
