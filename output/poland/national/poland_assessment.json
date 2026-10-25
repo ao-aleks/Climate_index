@@ -1,0 +1,22 @@
+{
+  "requested_start": "1961-01-01",
+  "requested_end": "2026-04-30",
+  "base_range_inclusive": [
+    1961,
+    1991
+  ],
+  "polish_grid_rectangles": 4092,
+  "complete_reference_cells": 3406,
+  "cells_with_no_local_weather": 686,
+  "cells_with_full_daily_period": 3106,
+  "complete_national_daily_baseline": false,
+  "complete_national_daily_period": false,
+  "complete_national_days": 0,
+  "valid_national_aci_months": 0,
+  "latest_month": "2026-04",
+  "latest_month_valid_cell_aci": 3106,
+  "water_level_included": false,
+  "download_attempted": false,
+  "status": "incomplete_local_spatial_or_temporal_coverage",
+  "method_validation_comparisons_passed": 23
+}

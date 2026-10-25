@@ -1,0 +1,17 @@
+region,rectangles,complete_reference,complete_weather_days_min,complete_weather_days_max,valid_aci_months_min,valid_aci_months_max,fully_complete_cells
+dolnoslaskie,259,259,23861,23861,784,784,259
+kujawsko_pomorskie,236,236,23861,23861,784,784,236
+lodzkie,238,238,23861,23861,784,784,238
+lubelskie,327,327,23861,23861,784,784,327
+lubuskie,177,177,23861,23861,784,784,177
+malopolskie,193,193,23861,23861,784,784,193
+mazowieckie,465,465,23861,23861,784,784,465
+opolskie,116,116,23861,23861,784,784,116
+podkarpackie,221,221,23861,23861,784,784,221
+podlaskie,272,272,23861,23861,784,784,272
+pomorskie,253,248,0,23861,0,784,248
+slaskie,152,152,23861,23861,784,784,152
+swietokrzyskie,147,147,23861,23861,784,784,147
+warminsko_mazurskie,329,329,12783,23861,420,784,29
+wielkopolskie,401,9,0,23861,0,784,9
+zachodniopomorskie,306,17,0,23861,0,784,17
